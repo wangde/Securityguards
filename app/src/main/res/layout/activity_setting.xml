@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:wangde="http://com.hlju.wangde.securityguards"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hlju.wangde.securityguards.Acitivity.SettingActivity">
+
+    <TextView
+        android:id="@+id/tv_setting"
+        style="@style/TitleStyle"
+        android:text="设置中心"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="50dp"
+        android:layout_width="0dp" />
+
+    <com.hlju.wangde.securityguards.view.SettingItemView
+        android:id="@+id/siv_update"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        wangde:title="自动更新设置"
+        wangde:desc_on="自动更新已开启"
+        wangde:desc_off="自动更新已关闭"
+        app:layout_constraintTop_toBottomOf="@+id/tv_setting"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+
+</android.support.constraint.ConstraintLayout>

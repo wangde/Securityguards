@@ -2,6 +2,7 @@ package com.hlju.wangde.securityguards.Acitivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hlju.wangde.securityguards.R;
+import com.hlju.wangde.securityguards.utils.PrefUtils;
 import com.hlju.wangde.securityguards.utils.StreamUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -99,7 +101,13 @@ public class SplashActivity extends AppCompatActivity {
         tvName.setText("版本名："+ getVersionName());
         tvProgress = (TextView) findViewById(R.id.tv_progress);
         rlRoot = (ConstraintLayout) findViewById(R.id.rl_root);
-        checkVersion();
+//        SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
+        boolean autoUpdate = PrefUtils.getBoolean("auto_update", true,this);
+        if (autoUpdate) {
+            checkVersion();
+        } else {
+            mHander.sendEmptyMessageDelayed(CODE_ENTER_HOME, 2000);//发送延时两秒的消息再跳转主页面
+        }
 
         //渐变动画
         AlphaAnimation animation = new AlphaAnimation(0.2f,1);
@@ -114,9 +122,11 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Message msg = Message.obtain();
+                HttpURLConnection conn = null;
                 long startTime = System.currentTimeMillis();
                 try {
-                    HttpURLConnection conn = (HttpURLConnection)new URL("http://").openConnection();
+
+                    conn = (HttpURLConnection) new URL("http://").openConnection();
                     conn.setRequestMethod("GET");
                     conn.setConnectTimeout(2000);
                     conn.setReadTimeout(2000);
@@ -158,6 +168,9 @@ public class SplashActivity extends AppCompatActivity {
                     e.printStackTrace();
                     msg.what = CODE_JSON_ERROR;
                 } finally {
+                    if (conn != null) {
+                        conn.disconnect();
+                    }
                     long endTime = System.currentTimeMillis();
                     long timeUsed = endTime - startTime;
                     try {
