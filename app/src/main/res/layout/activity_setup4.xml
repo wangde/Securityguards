@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hlju.wangde.securityguards.Acitivity.Setup1Activity">
+    <TextView
+        android:id="@+id/setup1_title"
+        style="@style/TitleStyle"
+        android:text="4.恭喜您，完成设置"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="50dp" />
+    <CheckBox
+        android:id="@+id/cb_box"
+        app:layout_constraintTop_toBottomOf="@+id/setup1_title"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:text="您没有开启防盗保护"
+        android:textSize="22sp"
+        android:layout_marginTop="4dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/setup1_title" />
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        app:layout_constraintTop_toBottomOf="@+id/cb_box"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_online"/>
+    </LinearLayout>
+    <RelativeLayout
+        app:layout_constraintTop_toBottomOf="@+id/linear1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1"
+        >
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/phone"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            />
+        <Button
+            android:id="@+id/button2"
+            style="@style/PreviousStyle"
+            />
+        <Button
+            android:id="@+id/button1"
+            style="@style/NextStyle"
+            android:text="设置完成"
+            />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

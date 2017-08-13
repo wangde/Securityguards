@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:wangde="http://com.hlju.wangde.securityguards"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hlju.wangde.securityguards.Acitivity.Setup1Activity">
+    <TextView
+        android:id="@+id/setup1_title"
+        style="@style/TitleStyle"
+        android:text="2.手机卡绑定"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="50dp" />
+    <TextView
+        android:id="@+id/textView1"
+        style="@style/ContentStyle"
+        app:layout_constraintTop_toBottomOf="@+id/setup1_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="通过绑定sim卡"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/setup1_title" />
+    <TextView
+        android:id="@+id/textView2"
+        style="@style/ContentStyle"
+        android:gravity="left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/textView1"
+        android:text="下次重启手机发现sim卡变化\n就会发送报警短信"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <com.hlju.wangde.securityguards.view.SettingItemView
+        android:id="@+id/siv_sim"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        wangde:desc_off ="sim卡未绑定"
+        wangde:desc_on="sim卡已绑定"
+        wangde:title="点击绑定sim卡"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/linear1"
+        app:layout_constraintTop_toBottomOf="@+id/siv_sim"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_online"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+    </LinearLayout>
+    <RelativeLayout
+        app:layout_constraintTop_toBottomOf="@+id/linear1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1"
+        >
+
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bind"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            />
+        <Button
+            android:id="@+id/button2"
+            style="@style/PreviousStyle"
+            />
+        <Button
+            android:id="@+id/button1"
+            style="@style/NextStyle"
+           />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

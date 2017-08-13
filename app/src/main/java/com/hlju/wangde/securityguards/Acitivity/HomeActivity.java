@@ -4,15 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hlju.wangde.securityguards.R;
+import com.hlju.wangde.securityguards.utils.MD5Utils;
+import com.hlju.wangde.securityguards.utils.PrefUtils;
+import com.hlju.wangde.securityguards.utils.ToastUtils;
 
 /**
  * 主页面
@@ -38,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
                 switch (position){
                     case 0:
                         //手机防盗
+                        showSafeDialog();
                         break;
                     case 8:
                         //设置中心
@@ -52,7 +59,59 @@ public class HomeActivity extends AppCompatActivity {
      * 手机防盗弹窗
      */
     protected void showSafeDialog(){
+        String pwd = PrefUtils.getString("password", null, this);
+        if (!TextUtils.isEmpty(pwd)) {
+            //输入密码弹窗
+            showInputPwdDialog();
+        } else {
+            //设置密码弹窗
+            showSetPwdDialog();
+        }
 
+
+    }
+
+    /**
+     * 输入密码弹窗
+     */
+    private void showInputPwdDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog dialog = builder.create();
+        View view = View.inflate(this, R.layout.dialog_input_pwd, null);
+        dialog.setView(view, 0, 0, 0, 0);//去掉黑边兼容2.x版本
+
+        Button btnOK = (Button) view.findViewById(R.id.btn_ok);
+        Button btnCancel = (Button) view.findViewById(R.id.btn_cancel);
+
+        final EditText etPwd = (EditText) view.findViewById(R.id.et_pwd);
+        btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pwd = etPwd.getText().toString().trim();
+
+                if (!TextUtils.isEmpty(pwd)) {
+                    String savePwd = PrefUtils.getString("password", null, getApplicationContext());
+                    if (MD5Utils.encode(pwd).equals(savePwd)) {
+                        //密码正确
+                        dialog.dismiss();
+                        startActivity(new Intent(getApplicationContext(),AntitheftActivity.class));
+                    } else {
+                        ToastUtils.showToast(getApplicationContext(), "输入密码错误");
+                    }
+
+                } else {
+                    ToastUtils.showToast(getApplicationContext(), "输入内容不能为空");
+                }
+
+            }
+        });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 
     /**
@@ -60,7 +119,44 @@ public class HomeActivity extends AppCompatActivity {
      */
     private void showSetPwdDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        AlertDialog dialog = builder.create();
+        final AlertDialog dialog = builder.create();
+        View view = View.inflate(this, R.layout.dialog_set_pwd, null);
+        dialog.setView(view, 0, 0, 0, 0);//去掉黑边兼容2.x版本
+
+        Button btnOK = (Button) view.findViewById(R.id.btn_ok);
+        Button btnCancel = (Button) view.findViewById(R.id.btn_cancel);
+
+        final EditText etPwd = (EditText) view.findViewById(R.id.et_pwd);
+        final EditText etPwdConfirm = (EditText) view.findViewById(R.id.et_pwd_confirm);
+
+        btnOK.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pwd = etPwd.getText().toString().trim();
+                String pwdConfirm = etPwdConfirm.getText().toString().trim();
+
+                if (!TextUtils.isEmpty(pwd) && !TextUtils.isEmpty(pwdConfirm)) {
+                    if (pwd.equals(pwdConfirm)) {
+                        //保存密码
+                        PrefUtils.putString("password", MD5Utils.encode(pwd), getApplicationContext());
+                        dialog.dismiss();
+                        startActivity(new Intent(getApplicationContext(),AntitheftActivity.class));
+                    } else {
+                        ToastUtils.showToast(getApplicationContext(), "两次密码不一致");
+                    }
+                } else {
+                    ToastUtils.showToast(getApplicationContext(), "输入内容不能为空");
+                }
+
+            }
+        });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
     class HomeAdapter extends BaseAdapter {
 
