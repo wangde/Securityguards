@@ -7,29 +7,25 @@ import android.view.View;
 
 import com.hlju.wangde.securityguards.R;
 
-public class Setup3Activity extends AppCompatActivity {
+public class Setup3Activity extends BaseSetupActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup3);
     }
-    /**
-     * 上一页
-     * @param view
-     */
-    public void previous(View view){
+
+    @Override
+    public void showPrevious() {
         startActivity(new Intent(this,Setup2Activity.class));
         finish();
+        overridePendingTransition(R.anim.anim_previous_in, R.anim.anim_previous_out);
     }
 
-    /**
-     * 下一页
-     * @param view
-     */
-    public void next(View view){
+    @Override
+    public void showNext() {
         startActivity(new Intent(this,Setup4Activity.class));
         finish();
-
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
     }
 }

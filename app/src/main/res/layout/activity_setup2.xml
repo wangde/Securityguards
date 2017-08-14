@@ -40,7 +40,7 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <com.hlju.wangde.securityguards.view.SettingItemView
-        android:id="@+id/siv_sim"
+        android:id="@+id/siv_bind"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
@@ -55,7 +55,7 @@
 
     <LinearLayout
         android:id="@+id/linear1"
-        app:layout_constraintTop_toBottomOf="@+id/siv_sim"
+        app:layout_constraintTop_toBottomOf="@+id/siv_bind"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

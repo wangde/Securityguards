@@ -12,7 +12,7 @@ import com.hlju.wangde.securityguards.R;
  * @author XiaoDe
  */
 
-public class Setup1Activity extends AppCompatActivity {
+public class Setup1Activity extends BaseSetupActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,12 +20,15 @@ public class Setup1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_setup1);
     }
 
-    /**
-     * 下一页
-     * @param view
-     */
-    public void next(View view){
+    @Override
+    public void showPrevious() {
+
+    }
+
+    @Override
+    public void showNext() {
         startActivity(new Intent(this,Setup2Activity.class));
         finish();
+        overridePendingTransition(R.anim.anim_in, R.anim.anim_out);
     }
 }
