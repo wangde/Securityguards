@@ -19,7 +19,7 @@
         android:layout_width="0dp"
         android:layout_height="50dp" />
     <CheckBox
-        android:id="@+id/cb_box"
+        android:id="@+id/cb_protect"
         app:layout_constraintTop_toBottomOf="@+id/setup1_title"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
 
     <LinearLayout
         android:id="@+id/linear1"
-        app:layout_constraintTop_toBottomOf="@+id/cb_box"
+        app:layout_constraintTop_toBottomOf="@+id/cb_protect"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

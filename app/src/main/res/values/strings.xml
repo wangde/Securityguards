@@ -2,4 +2,6 @@
     <string name="app_name">Security guards</string>
     <string name="version">版本号：</string>
     <string name="function_list">功能列表</string>
+    <string name="sample_device_admin_description">超级管理员，远程锁屏，擦除数据</string>
+    <string name="sample_device_admin">超级管理员</string>
 </resources>

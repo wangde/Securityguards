@@ -46,6 +46,9 @@ public class HomeActivity extends AppCompatActivity {
                         //手机防盗
                         showSafeDialog();
                         break;
+                    case 7:
+                        startActivity(new Intent(getApplicationContext(), AToolsActivity.class));
+                        break;
                     case 8:
                         //设置中心
                         startActivity(new Intent(getApplicationContext(),SettingActivity.class));

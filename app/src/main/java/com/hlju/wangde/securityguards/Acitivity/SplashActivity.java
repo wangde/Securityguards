@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -30,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -113,6 +115,9 @@ public class SplashActivity extends AppCompatActivity {
         AlphaAnimation animation = new AlphaAnimation(0.2f,1);
         animation.setDuration(2000);
         rlRoot.startAnimation(animation);
+
+        copyDb("address.db");//拷贝电话归属地查询数据库
+
     }
     /**
      * 检查版本权限
@@ -310,11 +315,54 @@ public class SplashActivity extends AppCompatActivity {
     private void enterHome() {
 
         startActivity(new Intent(this, HomeActivity.class));
+        finish();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         enterHome();
+    }
+
+    /**
+     * 拷贝号码归属地查询数据库
+     */
+    public void copyDb(String dbName) {
+        //判断文件是否存在如果存在无需拷贝
+        InputStream in = null;
+        FileOutputStream out = null;
+        File filesDir = getFilesDir();
+//        System.out.println("filesDir"+filesDir.getAbsolutePath());
+        File targetFile = new File(filesDir, dbName);
+        if (targetFile.exists()) {
+            System.out.println("数据库" + dbName + "已存在无需拷贝");
+            return;
+        }
+        AssetManager assets = getAssets();
+        try {
+
+            in = assets.open(dbName);
+            //data/data/包名
+
+
+            out = new FileOutputStream(targetFile);
+            int len = 0;
+            byte[] buffer = new byte[1024];
+            while ((len = in.read(buffer)) != -1) {
+                out.write(buffer, 0, len);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+
+            try {
+                in.close();
+                out.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("数据库:" + dbName + "拷贝成功");
+
     }
 }
