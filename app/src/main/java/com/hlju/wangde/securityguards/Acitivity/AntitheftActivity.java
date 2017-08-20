@@ -38,9 +38,9 @@ public class AntitheftActivity extends AppCompatActivity {
         tvPhone.setText(phone);
         boolean protect = PrefUtils.getBoolean("protect", false, this);
         if (protect) {
-            ivLock.setImageResource(R.drawable.lock);
+            ivLock.setImageResource(R.mipmap.lock);
         } else {
-            ivLock.setImageResource(R.drawable.unlock);
+            ivLock.setImageResource(R.mipmap.unlock);
         }
     }
 

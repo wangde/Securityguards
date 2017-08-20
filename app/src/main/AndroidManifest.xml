@@ -13,6 +13,10 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -87,7 +91,22 @@
             android:exported="true" />
 
         <activity android:name=".Acitivity.AToolsActivity" />
-        <activity android:name=".Acitivity.AddressQueryActivity"></activity>
+        <activity android:name=".Acitivity.AddressQueryActivity" />
+
+        <service
+            android:name=".service.AddressService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".Acitivity.DragViewActivity"
+            android:theme="@style/Translucent" />
+        <activity android:name=".Acitivity.BlackNumberActivity" />
+
+        <service
+            android:name=".service.BlackNumberService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>

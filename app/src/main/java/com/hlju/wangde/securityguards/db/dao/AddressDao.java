@@ -32,6 +32,40 @@ public class AddressDao {
                     address = cursor.getString(0);
                 }
                 cursor.close();
+            } else {
+                switch (number.length()) {
+                    case 3:
+                        address = "报警电话等";
+                        break;
+                    case 4:
+                        address = "模拟器";
+                        break;
+                    case 5:
+                        address = "服务电话";
+                        break;
+                    case 7:
+                    case 8:
+                        address = "本地座机电话";
+                        break;
+                    default:
+                        if (number.startsWith("0") && number.length() >= 11 && number.length() <= 12) {
+                            cursor = database.rawQuery("select location from data2 where area = ?",
+                                    new String[]{number.substring(1, 4)});
+                            if (cursor.moveToFirst()) {
+                                address = cursor.getString(0);
+                            }
+                            cursor.close();
+                            if ("未知号码".equals(address)) {
+                                cursor = database.rawQuery("select location from data2 where area = ?",
+                                        new String[]{number.substring(1, 3)});
+                                if (cursor.moveToFirst()) {
+                                    address = cursor.getString(0);
+                                }
+                                cursor.close();
+                            }
+                        }
+                        break;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();

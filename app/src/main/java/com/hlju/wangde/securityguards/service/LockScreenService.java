@@ -48,4 +48,9 @@ public class LockScreenService extends Service {
             mDPM.resetPassword("1234", 0);
         }
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }

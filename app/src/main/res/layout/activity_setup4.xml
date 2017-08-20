@@ -78,7 +78,7 @@
             android:id="@+id/image1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/phone"
+            android:src="@mipmap/phone"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             />

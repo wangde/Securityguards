@@ -33,7 +33,8 @@ public class PrefUtils {
         SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
         sp.edit().putInt(key,value).commit();
     }
-    public static int getBoolean(String key, int defValue, Context context){
+
+    public static int getInt(String key, int defValue, Context context) {
         SharedPreferences sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
         return sp.getInt(key,defValue);
     }
