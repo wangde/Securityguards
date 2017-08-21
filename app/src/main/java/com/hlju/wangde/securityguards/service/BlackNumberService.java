@@ -2,10 +2,14 @@ package com.hlju.wangde.securityguards.service;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.telephony.PhoneStateListener;
@@ -27,6 +31,7 @@ public class BlackNumberService extends Service {
     private BlackNumberDao mDao;
     private TelephonyManager mTM;
     private MyListener mListener;
+    private MyObserver mObserver;
 
     public BlackNumberService() {
     }
@@ -64,6 +69,11 @@ public class BlackNumberService extends Service {
                     int mode = mDao.findMode(incomingNumber);
                     if (mode == 1 || mode == 3) {
                         endCall();
+                        //系统添加通话记录是异步操作，在此处删除时可能记录还没添加出来
+                        //需要系统将记录添加完成后再删除
+//                        delecteCalllog(incomingNumber);
+                        mObserver = new MyObserver(new Handler(), incomingNumber);
+                        getContentResolver().registerContentObserver(Uri.parse("content://call_log/calls"), true, mObserver);
                     }
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
@@ -74,6 +84,40 @@ public class BlackNumberService extends Service {
                     break;
             }
         }
+    }
+
+    class MyObserver extends ContentObserver {
+
+        private String incomingNumber;
+
+        public MyObserver(Handler handler, String incomingNumber) {
+            super(handler);
+            this.incomingNumber = incomingNumber;
+        }
+
+        //数据发生变化时
+        @Override
+        public void onChange(boolean selfChange) {
+            super.onChange(selfChange);
+            System.out.println("通话记录发生变化");
+            delecteCalllog(incomingNumber);
+
+            //注销监听
+            getContentResolver().unregisterContentObserver(mObserver);
+
+        }
+    }
+
+    /**
+     * 删除通话记录
+     * <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+     * <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+     *
+     * @param number
+     */
+
+    private void delecteCalllog(String number) {
+        getContentResolver().delete(Uri.parse("content://call_log/calls"), "number=?", new String[]{number});
     }
 
     private void endCall() {

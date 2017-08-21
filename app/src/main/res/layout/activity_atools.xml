@@ -16,6 +16,7 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
+        android:id="@+id/tv_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button"
@@ -30,5 +31,21 @@
         app:layout_constraintTop_toBottomOf="@+id/atv_title"
         app:layout_constraintRight_toRightOf="@+id/atv_title"
         app:layout_constraintLeft_toLeftOf="@+id/atv_title" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:text="短信备份"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:drawableLeft="@android:drawable/ic_menu_camera"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        android:clickable="true"
+        android:onClick="smsBackup"
+        app:layout_constraintTop_toBottomOf="@+id/tv_address"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
