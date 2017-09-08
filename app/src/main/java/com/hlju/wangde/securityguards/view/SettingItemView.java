@@ -29,6 +29,7 @@ public class SettingItemView extends RelativeLayout {
         initView();
     }
 
+
     public SettingItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView();

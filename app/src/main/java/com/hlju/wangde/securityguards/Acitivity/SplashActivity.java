@@ -117,6 +117,7 @@ public class SplashActivity extends AppCompatActivity {
         rlRoot.startAnimation(animation);
 
         copyDb("address.db");//拷贝电话归属地查询数据库
+        copyDb("antivirus.db");
 
     }
     /**

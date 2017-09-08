@@ -11,6 +11,7 @@ import android.view.View;
 import com.hlju.wangde.securityguards.R;
 import com.hlju.wangde.securityguards.service.AddressService;
 import com.hlju.wangde.securityguards.service.BlackNumberService;
+import com.hlju.wangde.securityguards.service.WatchDogService;
 import com.hlju.wangde.securityguards.utils.PrefUtils;
 import com.hlju.wangde.securityguards.utils.ServiceStatusUtils;
 import com.hlju.wangde.securityguards.view.SettingItemClickView;
@@ -25,6 +26,7 @@ public class SettingActivity extends AppCompatActivity {
     private SettingItemClickView sicStyle;
     private SettingItemClickView sicLocation;
     private SettingItemView sivBlackNumber;
+    private SettingItemView sivAppLock;
     private String[] mItem = new String[]{"半透明", "活力橙", "卫士蓝", "金属灰", "苹果绿"};
 
 
@@ -39,6 +41,33 @@ public class SettingActivity extends AppCompatActivity {
         initAddressStyle();
         initAddressLocation();
         initBlackNumber();
+        initAppLock();
+
+    }
+
+    /**
+     * 程序锁，看门狗
+     */
+    private void initAppLock() {
+        sivAppLock = (SettingItemView) findViewById(R.id.siv_app_lock);
+        boolean serviceRunning = ServiceStatusUtils.isServiceRuning
+                ("com.hlju.wangde.securityguards.service.WatchDogService", this);
+        sivAppLock.setChecked(serviceRunning);
+        sivAppLock.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent service = new Intent(getApplicationContext(), WatchDogService.class);
+
+                if (sivAppLock.isChecked()) {
+                    sivAppLock.setChecked(false);
+                    stopService(service);//关闭开门狗
+                } else {
+                    sivAppLock.setChecked(true);
+                    startService(service);//开启程序锁
+                }
+            }
+        });
+
     }
 
     /**

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hlju.wangde.securityguards.Acitivity.ProcessSettingActivity">
+
+    <TextView
+        android:id="@+id/atv_title"
+        style="@style/TitleStyle"
+        android:text="进程管理设置"
+        android:layout_width="0dp"
+        tools:layout_editor_absoluteY="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/cb_showsystem"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:text="显示系统进程"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/atv_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <CheckBox
+        android:id="@+id/cb_auto_kill"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:text="锁屏清理已关闭"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:gravity="center_vertical"
+        android:padding="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/cb_showsystem"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -80,5 +80,18 @@
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="parent" />
 
+    <com.hlju.wangde.securityguards.view.SettingItemView
+        android:id="@+id/siv_app_lock"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        wangde:title="程序锁设置"
+        wangde:desc_on="程序锁已开启"
+        wangde:desc_off="程序锁已关闭"
+        app:layout_constraintTop_toBottomOf="@+id/siv_black_number"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

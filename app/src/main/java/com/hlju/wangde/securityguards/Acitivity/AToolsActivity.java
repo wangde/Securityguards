@@ -61,4 +61,8 @@ public class AToolsActivity extends AppCompatActivity {
             ToastUtils.showToast(this, "sdcard不存在");
         }
     }
+
+    public void appLock(View view) {
+        startActivity(new Intent(this, AppLockActivity.class));
+    }
 }

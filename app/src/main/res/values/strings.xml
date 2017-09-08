@@ -4,4 +4,9 @@
     <string name="function_list">功能列表</string>
     <string name="sample_device_admin_description">超级管理员，远程锁屏，擦除数据</string>
     <string name="sample_device_admin">超级管理员</string>
+    <string name="appwidget_text">窗口小部件</string>
+    <string name="add_widget">my窗口小部件</string>
+    <string name="title_activity_cache_tab">CacheTabActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

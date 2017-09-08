@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hlju.wangde.securityguards.R;
+import com.hlju.wangde.securityguards.engine.ProcessInfoProvider;
 import com.hlju.wangde.securityguards.utils.MD5Utils;
 import com.hlju.wangde.securityguards.utils.PrefUtils;
 import com.hlju.wangde.securityguards.utils.ToastUtils;
@@ -48,6 +49,21 @@ public class HomeActivity extends AppCompatActivity {
                         break;
                     case 1:
                         startActivity(new Intent(getApplicationContext(), BlackNumberActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(getApplicationContext(), AppManagerActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(getApplicationContext(), ProcessManagerActivity.class));
+                        break;
+                    case 4:
+                        startActivity(new Intent(getApplicationContext(), TrafficStatsActivity.class));
+                        break;
+                    case 5:
+                        startActivity(new Intent(getApplicationContext(), AntiVirusActivity.class));
+                        break;
+                    case 6:
+                        startActivity(new Intent(getApplicationContext(), CacheTabActivity.class));
                         break;
                     case 7:
                         startActivity(new Intent(getApplicationContext(), AToolsActivity.class));

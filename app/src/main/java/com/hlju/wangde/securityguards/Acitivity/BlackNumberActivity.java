@@ -37,14 +37,13 @@ public class BlackNumberActivity extends AppCompatActivity {
     private ProgressBar pbLoading;
     private int mIndex;
     private boolean isLoading;//标记当前是否正在加载
-    private int totalCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_black_number);
         mDao = BlackNumberDao.getInstance(this);
-        totalCount = mDao.getTotalCount();
+
         listView = (ListView) findViewById(R.id.iv_black_number);
         pbLoading = (ProgressBar) findViewById(R.id.pb_loading);
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -55,6 +54,7 @@ public class BlackNumberActivity extends AppCompatActivity {
                     int lastVisiblePosition = listView.getLastVisiblePosition();
                     if (lastVisiblePosition >= mList.size() - 1 && isLoading == false) {
                         System.out.println("到达底部");
+                        int totalCount = mDao.getTotalCount();
                         if (mList.size() < totalCount) {
                             initData();
                         } else {
